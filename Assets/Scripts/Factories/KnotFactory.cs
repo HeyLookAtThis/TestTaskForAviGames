@@ -3,19 +3,16 @@ using UnityEngine;
 public class KnotFactory
 {
     private Knot _prefab;
+    private KnotStorage _storage;
 
-    private GameObject _storage;
-
-    public KnotFactory(Knot prefab)
+    public KnotFactory(Knot prefab, KnotStorage storage)
     {
         _prefab = prefab;
+        _storage = storage;
     }
 
     public Knot Get()
     {
-        if (_storage == null)
-            _storage = new("Knoots");
-
         Knot knot = Object.Instantiate(_prefab, _storage.transform);
         return knot;
     }

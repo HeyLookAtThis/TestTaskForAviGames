@@ -1,11 +1,8 @@
+using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "KnotKonfig", menuName = "Configs/KnotConfig")]
-public class KnotConfig : ScriptableObject
+[Serializable]
+public class KnotConfig
 {
-    [SerializeField] private Knot _prefab;
-    [SerializeField] private int _ropeCount;
-
-    public Knot Prefab => _prefab;
-    public int RopeCount => _ropeCount;
+    [field: SerializeField, Range(2, 4)] public int RopeCount { get; private set; }
 }

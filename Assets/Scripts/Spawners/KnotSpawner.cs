@@ -2,18 +2,21 @@ using UnityEngine;
 
 public class KnotSpawner : MonoBehaviour
 {
+    [SerializeField] private Knot _knootPrefab;
+    [SerializeField] private KnotStorage _knotStorage;
+
     [SerializeField, Range(3, 5)] private float _radius;
 
     [SerializeField] private Transform _rightCenterTransform;
     [SerializeField] private Transform _leftCenterTransform;
 
-    private KnotFactory _knotFactory;
+    private KnotFactory _factory;
 
     private int KnotCount => 14; 
     private Vector2 RightCenter => _rightCenterTransform.position;
     private Vector2 LeftCenter => _leftCenterTransform.position;
 
-    public void InitializeFactory(KnotFactory knotFactory) => _knotFactory = knotFactory;
+    public void InitializeFactory() => _factory = new KnotFactory(_knootPrefab, _knotStorage);
 
     public void Run()
     {
@@ -56,7 +59,7 @@ public class KnotSpawner : MonoBehaviour
     private void SpawnKnot(Vector2 center, float angle, ref int i)
     {
         Vector2 position = GetPosition(center, angle);
-        _knotFactory.Get().SetPosition(position);
+        _factory.Get().SetPosition(position);
         i++;
     }
 
