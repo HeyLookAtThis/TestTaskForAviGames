@@ -4,6 +4,7 @@ public class KnotSpawner : MonoBehaviour
 {
     [SerializeField] private Knot _knootPrefab;
     [SerializeField] private KnotStorage _knotStorage;
+    [SerializeField] private CursorPosition _cursor;
 
     [SerializeField, Range(3, 5)] private float _radius;
 
@@ -41,6 +42,7 @@ public class KnotSpawner : MonoBehaviour
         for (int i = 0; i < KnotCount / SideCount; i++)
         {
             Knot knot = _factory.Get();
+            knot.Initialize(_cursor);
             knot.SetPosition(position);
             _knotStorage.Add(knot);
 

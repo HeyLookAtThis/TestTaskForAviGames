@@ -13,18 +13,6 @@ MonoBehaviour:
   m_Name: RopesConfig
   m_EditorClassIdentifier: 
   _prefab: {fileID: 5811185037670122101, guid: cbf4fdc75dd42d14db12335431795bd0, type: 3}
-  _knotConfigs:
-  - <IndexesOfKnotToConnectTo>k__BackingField: 0100000002000000040000000a000000
-  - <IndexesOfKnotToConnectTo>k__BackingField: 00000000050000000b000000
-  - <IndexesOfKnotToConnectTo>k__BackingField: 0000000006000000
-  - <IndexesOfKnotToConnectTo>k__BackingField: 090000000b0000000c000000
-  - <IndexesOfKnotToConnectTo>k__BackingField: 00000000070000000d000000
-  - <IndexesOfKnotToConnectTo>k__BackingField: 010000000c00000006000000
-  - <IndexesOfKnotToConnectTo>k__BackingField: 0500000002000000
-  - <IndexesOfKnotToConnectTo>k__BackingField: 040000000c00000008000000
-  - <IndexesOfKnotToConnectTo>k__BackingField: 070000000d00000009000000
-  - <IndexesOfKnotToConnectTo>k__BackingField: 08000000030000000a000000
-  - <IndexesOfKnotToConnectTo>k__BackingField: 09000000000000000b000000
-  - <IndexesOfKnotToConnectTo>k__BackingField: 0a00000001000000030000000c000000
-  - <IndexesOfKnotToConnectTo>k__BackingField: 0b000000070000000300000005000000
-  - <IndexesOfKnotToConnectTo>k__BackingField: 0800000004000000
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 8

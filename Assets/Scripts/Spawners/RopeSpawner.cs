@@ -5,31 +5,27 @@ public class RopeSpawner : MonoBehaviour
     [SerializeField] private RopesConfig _config;
     [SerializeField] private KnotStorage _knotStorage;
 
+    private KnotConnectionsData _connections;
     private RopeFactory _factory;
 
-    public void InitializeFactory() => _factory = new RopeFactory(_config);
+    public void Initialize()
+    {
+        _connections = new KnotConnectionsData();
+        _factory = new RopeFactory(_config);
+    }
 
     public void Run()
     {
-        GameObject storage = new("Rope");
-
-        for(int i =0; i < _knotStorage.Count; i++)
+        for (int i = 0; i < _knotStorage.Count; i++)
         {
-            KnotConfig knotConfig = _config.GetKnotConfig(i);
-
-            for (int j = 0; j < knotConfig.IndexesOfKnotToConnectTo.Length; j++)
+            for (int j = 0; j < _connections.GetConnectionCount(i); j++)
             {
-                int knotIndex = knotConfig.IndexesOfKnotToConnectTo[j];
+                int knotIndex = _connections.GetConnection(i, j);
 
                 Knot begginer = _knotStorage.Get(i);
                 Knot ender = _knotStorage.Get(knotIndex);
 
-                if (begginer.HaveConnect(ender) == false)
-                {
-                    _factory.Create(begginer.Position, ender.Position);
-                    begginer.AddConnect(ender);
-                    ender.AddConnect(begginer);
-                }
+                _factory.Create(begginer, ender);                
             }
         }
     }

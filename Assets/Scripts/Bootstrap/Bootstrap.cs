@@ -8,7 +8,7 @@ public class Bootstrap : MonoBehaviour
     private void Awake()
     {
         _knotSpawner.Initialize();
-        _ropeSpawner.InitializeFactory();
+        _ropeSpawner.Initialize();
 
         _knotSpawner.Run();
         _ropeSpawner.Run();

@@ -11,10 +11,9 @@ public class RopeFactory
         _storage = new GameObject("Ropes");
     }
 
-    public void Create(Vector2 beggining, Vector2 ending)
+    public void Create(Knot beggining, Knot ending)
     {
         Rope rope = Object.Instantiate(_config.Prefab, _storage.transform);
-        rope.SetBeginningPosition(beggining);
-        rope.SetEndingPosition(ending);
+        rope.Initialize(beggining, ending, _config.LayerMask);
     }
 }

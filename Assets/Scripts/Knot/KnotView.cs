@@ -1,20 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-//[RequireComponent(typeof(Image))]
 public class KnotView : MonoBehaviour
 {
-    [SerializeField] private Sprite _sprite;
+    [SerializeField] private Sprite _defaultSprite;
+    [SerializeField] private Sprite _highlightedSprite;
 
-    //private Image _image;
     private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
-        //_image = GetComponent<Image>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _spriteRenderer.sprite = _sprite;
+        _spriteRenderer.sprite = _defaultSprite;
     }
+
+    public void SetHighlightedSprite() => _spriteRenderer.sprite = _highlightedSprite;
+    public void SetDefaultSprite() => _spriteRenderer.sprite = _defaultSprite;
 }

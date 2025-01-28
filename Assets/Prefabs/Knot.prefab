@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7846995612961281606}
   - component: {fileID: 3423467560985228937}
+  - component: {fileID: 4564451672791950276}
   m_Layer: 0
   m_Name: Knot
   m_TagString: Untagged
@@ -45,6 +46,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f644a7fa77892949827875a8f1bb6a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _view: {fileID: 3942326410190942733}
+--- !u!58 &4564451672791950276
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255111352234770321}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.7
 --- !u!1 &8320498440124542269
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e029a03217ace5449bf4ba9dc19d8d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: 697e0137959492e479b16e384f60035f, type: 3}
+  _defaultSprite: {fileID: 21300000, guid: 013cd1f7f96397049b7d780ddf44f11d, type: 3}
+  _highlightedSprite: {fileID: 21300000, guid: 4f375cd2c0a4ce34e8a4e8fe4205642e, type: 3}
 --- !u!212 &34044415327839684
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -140,6 +178,6 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

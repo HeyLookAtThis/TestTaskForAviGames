@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7983436828335643671}
   - component: {fileID: 5811185037670122101}
   - component: {fileID: 2098381162603013650}
-  m_Layer: 0
+  - component: {fileID: 2689943866821923503}
+  m_Layer: 3
   m_Name: Rope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,8 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _view: {fileID: 5778294320466377573}
-  _beginning: {fileID: 0}
-  _endning: {fileID: 0}
 --- !u!120 &2098381162603013650
 LineRenderer:
   serializedVersion: 2
@@ -153,6 +152,47 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!68 &2689943866821923503
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5204208108212627348}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.25, y: 0}
+  - {x: 0.25, y: 0}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &5903209509191332710
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7720654412201213291}
   - component: {fileID: 5778294320466377573}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,3 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ae5030edb7d5d40b9572cc71731715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _redMaterial: {fileID: 2100000, guid: 27d1a46df17b3ae45ad629ff2badb37a, type: 2}
+  _greenMaterial: {fileID: 2100000, guid: 2d68e489ebae93b439158691f8ff4a80, type: 2}
+  _rope: {fileID: 5811185037670122101}
