@@ -7,5 +7,5 @@ public class RopesConfig : ScriptableObject
     [SerializeField] private KnotConfig[] _knotConfigs;
 
     public Rope Prefab => _prefab;
-    public int GetCount(int index) => _knotConfigs[index].RopeCount;
+    public KnotConfig GetKnotConfig(int index) => _knotConfigs[index];
 }

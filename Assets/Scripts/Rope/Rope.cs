@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -9,8 +7,6 @@ public class Rope : MonoBehaviour
     private const int EndginingPositionIndex = 1;
 
     [SerializeField] private RopeView _view;
-    [SerializeField] private Transform _beginning;
-    [SerializeField] private Transform _endning;
 
     private LineRenderer _lineRenderer;
 
@@ -19,12 +15,6 @@ public class Rope : MonoBehaviour
     private void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
-    }
-
-    private void Update()
-    {
-        SetBeginningPosition(_beginning.position);
-        SetEndingPosition(_endning.position);
     }
 
     public void SetBeginningPosition(Vector3 position) => _lineRenderer.SetPosition(BegginingPositionIndex, position);
