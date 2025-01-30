@@ -33,15 +33,24 @@ public class Knot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void OnPointerDown(PointerEventData eventData)
     {
         _canMove = true;
+        _view.IncreaseOrderInLayer();
     }
-    public void OnPointerUp(PointerEventData eventData) => _canMove = false;
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        _canMove = false;
+        _view.DecreaseOrderInLayer();
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(eventData.pointerPress == null)
-        _view.SetHighlightedSprite();
+        if (eventData.pointerPress == null)
+            _view.SetHighlightedSprite();
     }
-    public void OnPointerExit(PointerEventData eventData) => _view.SetDefaultSprite();
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (eventData.pointerPress == null)
+            _view.SetDefaultSprite();
+    }
 
     public void SetPosition(Vector3 position) => transform.position = position;
     public void Initialize(CursorPosition cursorPosition) => _cursor = cursorPosition;

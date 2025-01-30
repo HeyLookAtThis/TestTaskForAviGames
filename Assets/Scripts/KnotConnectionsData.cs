@@ -22,8 +22,8 @@ public class KnotConnectionsData
     private void DeleteDublicateValues()
     {
         for (int i = 0; i < _currentData.Count; i++)
-            for (int j = 0; j < _currentData[j].Count; j++)
-                if (_currentData[j].Contains(i))
-                    _currentData[j].Remove(i);
+            for (int j = 0; j < _currentData[i].Count; j++)
+                if (_currentData[_currentData[i][j]].Contains(i))
+                    _currentData[_currentData[i][j]].Remove(i);
     }
 }

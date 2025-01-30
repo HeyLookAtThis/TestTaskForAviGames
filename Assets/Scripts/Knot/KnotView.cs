@@ -15,4 +15,7 @@ public class KnotView : MonoBehaviour
 
     public void SetHighlightedSprite() => _spriteRenderer.sprite = _highlightedSprite;
     public void SetDefaultSprite() => _spriteRenderer.sprite = _defaultSprite;
+
+    public void IncreaseOrderInLayer() => _spriteRenderer.sortingOrder++;
+    public void DecreaseOrderInLayer() => _spriteRenderer.sortingOrder--;
 }

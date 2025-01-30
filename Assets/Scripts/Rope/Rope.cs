@@ -1,32 +1,23 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(LineRenderer), typeof(EdgeCollider2D))]
+[RequireComponent(typeof(EdgeCollider2D))]
 public class Rope : MonoBehaviour
 {
-    private const int BegginingPositionIndex = 0;
-    private const int EndginingPositionIndex = 1;
-
     [SerializeField] private RopeView _view;
 
-    private LineRenderer _lineRenderer;
     private EdgeCollider2D _edgeCollider;
 
-    private LayerMask _layerMask;
     private Knot _beginningKnot;
     private Knot _endningKnot;
 
-    public LineRenderer LineRenderer => _lineRenderer;
     public bool IsCrossing { get; private set; }
 
     private Vector2 Start => _beginningKnot.Position;
     private Vector2 End => _endningKnot.Position;
 
-    private void Awake()
-    {
-        _lineRenderer = GetComponent<LineRenderer>();
-        _edgeCollider = GetComponent<EdgeCollider2D>();
-    }
+    private void Awake() => _edgeCollider = GetComponent<EdgeCollider2D>();
 
     private void OnDisable()
     {
@@ -34,32 +25,16 @@ public class Rope : MonoBehaviour
         _endningKnot.PositionChanged -= OnSetEndingPosition;
     }
 
-    private void Update()
-    {
-        RaycastHit2D hit = Physics2D.Linecast(Start, End, _layerMask);
+    private void Update() => SetCrossing();
 
-        if (hit.collider.TryGetComponent<Rope>(out Rope rope))
-        {
-            IsCrossing = true;
-            _view.SetRed();
-        }
-
-        if(hit == false)
-        {
-            IsCrossing = false;
-            _view.SetGreen();
-        }
-    }
-
-    public void Initialize(Knot begginingKnot, Knot endingKnot, LayerMask layerMask)
+    public void Initialize(Knot begginingKnot, Knot endingKnot)
     {
         _beginningKnot = begginingKnot;
         _endningKnot = endingKnot;
 
-        _layerMask = layerMask;
-
         OnSetBeginningPosition(Start);
         OnSetEndingPosition(End);
+        SetCrossing();
 
         _beginningKnot.PositionChanged += OnSetBeginningPosition;
         _endningKnot.PositionChanged += OnSetEndingPosition;
@@ -67,19 +42,44 @@ public class Rope : MonoBehaviour
 
     private void SetColliderPoints()
     {
-        List<Vector2> points = new() { Start, End };
+        float indent = 0.75f;
+
+        Vector2 starting = (End - Start).normalized * indent;
+        Vector2 ending = (Start - End).normalized * indent;
+
+        List<Vector2> points = new() {Start + starting, End + ending };
         _edgeCollider.SetPoints(points);
     }
 
     private void OnSetBeginningPosition(Vector2 position)
     {
-        _lineRenderer.SetPosition(BegginingPositionIndex, position);
+        _view.SetLineBeggining(position);
         SetColliderPoints();
     }
 
     private void OnSetEndingPosition(Vector2 position)
     {
-        _lineRenderer.SetPosition(EndginingPositionIndex, position);
+        _view.SetLineEnding(position);
         SetColliderPoints();
+    }
+
+    private void SetCrossing()
+    {
+        List<Collider2D> result = new();
+
+        _edgeCollider.OverlapCollider(new(), result);
+
+        var collider = result.FirstOrDefault(collider => collider is EdgeCollider2D || collider is CircleCollider2D);
+
+        if (collider != null)
+        {
+            IsCrossing = true;
+            _view.SetRed();
+        }
+        else
+        {
+            IsCrossing = false;
+            _view.SetGreen();
+        }
     }
 }

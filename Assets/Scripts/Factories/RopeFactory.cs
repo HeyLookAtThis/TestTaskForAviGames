@@ -14,6 +14,6 @@ public class RopeFactory
     public void Create(Knot beggining, Knot ending)
     {
         Rope rope = Object.Instantiate(_config.Prefab, _storage.transform);
-        rope.Initialize(beggining, ending, _config.LayerMask);
+        rope.Initialize(beggining, ending);
     }
 }
