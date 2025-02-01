@@ -12,6 +12,8 @@ public class Knot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     private CursorPosition _cursor;
 
     private UnityAction<Vector2> _positionChanged;
+    private UnityAction _startedMoving;
+    private UnityAction _stoppedMoving;
 
     public event UnityAction<Vector2> PositionChanged
     {
@@ -19,6 +21,19 @@ public class Knot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         remove => _positionChanged -= value;
     }
 
+    public event UnityAction StartedMoving
+    {
+        add => _startedMoving += value;
+        remove => _startedMoving -= value;
+    }
+
+    public event UnityAction StoppedMoving
+    {
+        add => _stoppedMoving += value;
+        remove => _stoppedMoving -= value;
+    }
+
+    public KnotView View => _view;
     public Vector2 Position => transform.position;
 
     private void Update()
@@ -34,11 +49,14 @@ public class Knot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {
         _canMove = true;
         _view.IncreaseOrderInLayer();
+        _view.PlayClick();
+        _startedMoving?.Invoke();
     }
     public void OnPointerUp(PointerEventData eventData)
     {
         _canMove = false;
         _view.DecreaseOrderInLayer();
+        _stoppedMoving?.Invoke();
     }
 
     public void OnPointerEnter(PointerEventData eventData)

@@ -5,15 +5,16 @@ public class RopeFactory
     private RopesConfig _config;
     private GameObject _storage;
 
-    public RopeFactory(RopesConfig config)
+    public RopeFactory(RopesConfig config, GameObject storage)
     {
         _config = config;
-        _storage = new GameObject("Ropes");
+        _storage = storage;
     }
 
-    public void Create(Knot beggining, Knot ending)
+    public Rope Create(Knot beggining, Knot ending)
     {
         Rope rope = Object.Instantiate(_config.Prefab, _storage.transform);
         rope.Initialize(beggining, ending);
+        return rope;
     }
 }

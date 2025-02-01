@@ -4,6 +4,7 @@ public class RopeSpawner : MonoBehaviour
 {
     [SerializeField] private RopesConfig _config;
     [SerializeField] private KnotStorage _knotStorage;
+    [SerializeField] private RopeStorage _ropeStorage;
 
     private KnotConnectionsData _connections;
     private RopeFactory _factory;
@@ -11,7 +12,7 @@ public class RopeSpawner : MonoBehaviour
     public void Initialize()
     {
         _connections = new KnotConnectionsData();
-        _factory = new RopeFactory(_config);
+        _factory = new RopeFactory(_config, _ropeStorage.gameObject);
     }
 
     public void Run()
@@ -25,8 +26,14 @@ public class RopeSpawner : MonoBehaviour
                 Knot begginer = _knotStorage.Get(i);
                 Knot ender = _knotStorage.Get(knotIndex);
 
-                _factory.Create(begginer, ender);                
+                Rope rope = _factory.Create(begginer, ender);
+                _ropeStorage.Add(rope);
             }
         }
+    }
+
+    public void Clear()
+    {
+        _ropeStorage.Hide();
     }
 }

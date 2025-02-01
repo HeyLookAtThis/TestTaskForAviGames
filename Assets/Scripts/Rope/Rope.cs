@@ -23,6 +23,12 @@ public class Rope : MonoBehaviour
     {
         _beginningKnot.PositionChanged -= OnSetBeginningPosition;
         _endningKnot.PositionChanged -= OnSetEndingPosition;
+
+        _beginningKnot.StartedMoving -= _view.PlayStretching;
+        _beginningKnot.StoppedMoving -= _view.OnStopStretching;
+
+        _endningKnot.StartedMoving -= _view.PlayStretching;
+        _endningKnot.StoppedMoving -= _view.OnStopStretching;
     }
 
     private void Update() => SetCrossing();
@@ -38,7 +44,15 @@ public class Rope : MonoBehaviour
 
         _beginningKnot.PositionChanged += OnSetBeginningPosition;
         _endningKnot.PositionChanged += OnSetEndingPosition;
+
+        _beginningKnot.StoppedMoving += _view.OnStopStretching;
+        _beginningKnot.StartedMoving += _view.PlayStretching;
+
+        _endningKnot.StoppedMoving += _view.OnStopStretching;
+        _endningKnot.StartedMoving += _view.PlayStretching;
     }
+
+    public void Disable() => gameObject.SetActive(false);
 
     private void SetColliderPoints()
     {
