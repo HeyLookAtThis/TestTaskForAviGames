@@ -33,7 +33,7 @@ public class Knot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         remove => _stoppedMoving -= value;
     }
 
-    public KnotView View => _view;
+    public bool CanMove => _canMove;
     public Vector2 Position => transform.position;
 
     private void Update()

@@ -56,7 +56,7 @@ public class Rope : MonoBehaviour
 
     private void SetColliderPoints()
     {
-        float indent = 0.75f;
+        float indent = 0.1f;
 
         Vector2 starting = (End - Start).normalized * indent;
         Vector2 ending = (Start - End).normalized * indent;

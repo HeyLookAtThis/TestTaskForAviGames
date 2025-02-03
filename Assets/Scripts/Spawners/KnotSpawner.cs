@@ -35,14 +35,14 @@ public class KnotSpawner : MonoBehaviour
         Spawn();
     }
 
-    public void Respawn()
+    public void Disable()
     {
         ResetNotSpawnedKnots();
 
-        for (int i = 0; i < KnotCount; i++)
-            _knotStorage.Get(i).View.DoFade();
+        //for (int i = 0; i < KnotCount; i++)
+        //    _knotStorage.Get(i).View.DoFade();
 
-        Spawn();
+        _knotStorage.Dasable();
     }
 
     private void Spawn()

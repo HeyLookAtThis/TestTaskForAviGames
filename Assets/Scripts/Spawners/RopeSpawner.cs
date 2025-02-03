@@ -13,6 +13,7 @@ public class RopeSpawner : MonoBehaviour
     {
         _connections = new KnotConnectionsData();
         _factory = new RopeFactory(_config, _ropeStorage.gameObject);
+        _ropeStorage.Initialize();
     }
 
     public void Run()

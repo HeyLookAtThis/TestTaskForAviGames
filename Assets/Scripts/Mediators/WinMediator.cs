@@ -2,25 +2,22 @@ using UnityEngine;
 
 public class WinMediator : MonoBehaviour
 {
-    [SerializeField] private WinPanel _winPanel;
+    [SerializeField] private GamePanel _gamePanel;
     [SerializeField] private RopeStorage _ropeStorage;
+    [SerializeField] private KnotStorage _knotStorage;
     [SerializeField] private KnotSpawner _knotSpawner;
     [SerializeField] private RopeSpawner _ropeSpawner;
     [SerializeField] private Score _score;
 
-    private void OnEnable()
+    private void Update()
     {
-        _ropeStorage.RopesCameUndone += _winPanel.OnShow;
-        _ropeStorage.RopesCameUndone += _knotSpawner.Respawn;
-        _ropeStorage.RopesCameUndone += _ropeSpawner.Clear;
-        _ropeStorage.RopesCameUndone += _score.OnAddWinCount;
-    }
-
-    private void OnDisable()
-    {
-        _ropeStorage.RopesCameUndone -= _winPanel.OnShow;
-        _ropeStorage.RopesCameUndone -= _knotSpawner.Respawn;
-        _ropeStorage.RopesCameUndone -= _ropeSpawner.Clear;
-        _ropeStorage.RopesCameUndone -= _score.OnAddWinCount;
+        if (_knotStorage.Checker.IsKnotsFree && _ropeStorage.Checker.IsRopesFree)
+        {
+            _knotSpawner.Disable();
+            _ropeSpawner.Clear();
+            _score.AddWinCount();
+            _gamePanel.SwitchToNextPanel();
+            gameObject.SetActive(false);
+        }
     }
 }

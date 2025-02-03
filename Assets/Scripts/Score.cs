@@ -6,5 +6,5 @@ public class Score : MonoBehaviour
 
     private int _totalCount;
 
-    public void OnAddWinCount() => _totalCount += _winScoreCount;
+    public void AddWinCount() => _totalCount += _winScoreCount;
 }

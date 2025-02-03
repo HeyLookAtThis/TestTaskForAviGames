@@ -1,34 +1,24 @@
-using DG.Tweening;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
-using Zenject;
 
-public class WinPanel : MonoBehaviour, IPanel
+public class WinPanel : Panel
 {
-
     [SerializeField] private ParticleSystem _leftParticle;
     [SerializeField] private ParticleSystem _rightParticle;
 
-    private Image _image;
-    private IPanelSwitcher _switcher;
-    private Coroutine _toMapPanelSwitcher;
+    private Coroutine _waitingTicker;
 
-    private void Awake() => _image = GetComponent<Image>();
+    public override void SwitchToNextPanel() => Switcher.SwitchPanel<MapPanel>();
 
-    public void OnShow()
+    public override void ShowingAction()
     {
-        gameObject.SetActive(true);
+        PlayParticles();
 
-        float tranparentValue = 0;
-        float defaulValue = 1;
-        float duration = 0.25f;
-        int loops = 2;
+        if (_waitingTicker != null)
+            StopCoroutine(_waitingTicker);
 
-        _image.DOFade(defaulValue, duration).From(tranparentValue).SetLoops(loops, LoopType.Yoyo).OnComplete(() => SwitchToMapPanel());
+        _waitingTicker = StartCoroutine(Ticker());
     }
-
-    public void OnHide() => gameObject.SetActive(false);
 
     private void PlayParticles()
     {
@@ -36,17 +26,7 @@ public class WinPanel : MonoBehaviour, IPanel
         _rightParticle.Play();
     }
 
-    private void SwitchToMapPanel()
-    {
-        PlayParticles();
-
-        if (_toMapPanelSwitcher != null)
-            StopCoroutine(_toMapPanelSwitcher);
-
-        _toMapPanelSwitcher = StartCoroutine(PanelSwitcher());
-    }
-
-    private IEnumerator PanelSwitcher()
+    private IEnumerator Ticker()
     {
         float seconds = 3f;
         var waitTime = new WaitForSeconds(seconds);
@@ -60,11 +40,8 @@ public class WinPanel : MonoBehaviour, IPanel
 
         if (isTicked)
         {
-            _switcher.SwitchPanel<MapPanel>();
+            SwitchToNextPanel();
             yield break;
         }
     }
-
-    [Inject]
-    private void Construct(IPanelSwitcher switcher) => _switcher = switcher;
 }

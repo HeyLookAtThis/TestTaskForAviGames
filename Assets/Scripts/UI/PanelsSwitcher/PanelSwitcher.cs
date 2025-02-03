@@ -8,12 +8,12 @@ public class PanelSwitcher : MonoBehaviour, IPanelSwitcher
     [SerializeField] private WinPanel _winPanel;
     [SerializeField] private MapPanel _mapPanel;
 
-    private IPanel _currentPanel;
-    private List<IPanel> _panels;
+    private Panel _currentPanel;
+    private List<Panel> _panels;
 
     private void Awake()
     {
-        _panels = new List<IPanel>()
+        _panels = new List<Panel>()
         {
             _gamePanel,
             _winPanel,
@@ -23,9 +23,9 @@ public class PanelSwitcher : MonoBehaviour, IPanelSwitcher
         SwitchPanel<GamePanel>();
     }
 
-    public void SwitchPanel<T>() where T : IPanel
+    public void SwitchPanel<T>() where T : Panel
     {
-        IPanel panel = _panels.FirstOrDefault(panel => panel is T);
+        Panel panel = _panels.FirstOrDefault(panel => panel is T);
 
         _currentPanel?.OnHide();
         _currentPanel = panel;

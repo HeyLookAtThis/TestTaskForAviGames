@@ -1,7 +1,10 @@
-using UnityEngine;
-
-public class MapPanel : MonoBehaviour, IPanel
+public class MapPanel : Panel
 {
-    public void OnHide() => gameObject.SetActive(false);
-    public void OnShow() => gameObject.SetActive(true);
+    public override void ShowingAction()
+    {
+    }
+
+    public override void SwitchToNextPanel()
+    {
+    }
 }
